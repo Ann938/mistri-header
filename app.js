@@ -103,7 +103,19 @@
     hd.className = "hd" + (v === "tabs" || v === "sys" ? " hd--tabs" : "") + (v === "cmdk" ? " hd--cmdk" : "");
     hd.innerHTML = `<div class="hd__logo"><a href="#" data-go="${pages()[0]}" aria-label="МИСТРИ, на главную"><img src="assets/logo.svg" alt="МИСТРИ"></a>${logoExtra}</div>
       <div class="hd__mid">${mid}</div><div class="hd__right">${right}</div>`;
+    fixNavWidth();
     placeTabs();
+  }
+  // ширина переключателя — по самому длинному названию раздела роли, чтобы шапка не прыгала
+  function fixNavWidth() {
+    const label = $(".navbtn--d > span:not(.ic), .crumb-sw__btn > span:not(.ic)");
+    if (!label) return;
+    const cur = label.textContent;
+    label.style.width = "auto";
+    let max = 0;
+    for (const k of pages()) { label.textContent = SEC[k].t; max = Math.max(max, label.getBoundingClientRect().width); }
+    label.textContent = cur;
+    label.style.width = Math.ceil(max) + "px";
   }
   function placeTabs() {
     const t = $(".tabs"); if (!t) return;
@@ -462,5 +474,5 @@
   const demoH = () => document.documentElement.style.setProperty("--demo-h", $("#demo").offsetHeight + "px");
   new ResizeObserver(demoH).observe($("#demo"));
   render(false);
-  document.fonts?.ready.then(placeTabs);
+  document.fonts?.ready.then(() => { fixNavWidth(); placeTabs(); });
 })();

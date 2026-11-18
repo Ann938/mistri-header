@@ -572,3 +572,15 @@ body { min-width: 1280px; }
 .hd__logo { align-items: center; }
 .crumb-sw { align-self: center; align-items: center; }
 .crumb-sw__line { margin-bottom: 0; }
+/* без скачков: подпись переключателя фиксированной ширины (задаётся из JS по самому длинному разделу), шеврон — у правого края */
+.navbtn--d > span:not(.ic), .crumb-sw__btn > span:not(.ic) { display: inline-block; text-align: left; white-space: nowrap; }
+/* В1 — кнопка шире, шеврон справа */
+.navbtn--d { padding: 0 16px; gap: 12px; }
+.navbtn--d > span:not(.ic) { margin-right: 12px; }
+/* В2 — как было: у логотипа без фона, название 20 px, иконка акцентная; подложка только при наведении */
+.crumb-sw__btn { height: 40px; padding: 0 10px; gap: 10px; border-radius: 14px; background: none; box-shadow: none; font-size: 20px; line-height: 28px; font-weight: 600; }
+.crumb-sw__btn:hover { background: var(--c-overlay); box-shadow: var(--glass-1); }
+.crumb-sw__btn[aria-expanded="true"] { background: rgba(255, 255, 255, 0.6); box-shadow: var(--glass-1); }
+.crumb-sw__btn .ic:first-child { color: var(--c-accent); }
+.crumb-sw__btn .i-chev { color: var(--c-secondary); }
+.crumb-sw__btn > span:not(.ic) { margin-right: 6px; }
