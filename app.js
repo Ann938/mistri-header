@@ -101,8 +101,8 @@
     right += `<button class="ibtn ibtn--sun" type="button" aria-label="Тема">${ic("sun")}</button><button class="ibtn" type="button" aria-label="Уведомления">${ic("bell")}<span class="ibtn__dot"></span></button>`;
     // В1 и В2: порядок справа — разделы, тема, уведомления, аккаунт
     if (v === "btn" || v === "logo") {
-      const sw = v === "btn" ? navBtn("navbtn--d") : `<div class="crumb-sw crumb-sw--right"><button class="crumb-sw__btn" data-nav="nav" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="${lbl()}">${ic(cur().i)}<span>${cur().t}</span>${ic("chev")}</button></div>`;
-      logoExtra = "";
+      // В2: переключатель снова у логотипа (logoExtra), справа — тема, уведомления, аккаунт
+      const sw = v === "btn" ? navBtn("navbtn--d") : "";
       right = sw + `<button class="ibtn ibtn--sun" type="button" aria-label="Тема">${ic("sun")}</button><button class="ibtn" type="button" aria-label="Уведомления">${ic("bell")}<span class="ibtn__dot"></span></button>` + userHTML();
     }
     const hd = $("#hd");
