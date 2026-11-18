@@ -501,3 +501,40 @@ kbd { flex: none; padding: 4px 8px; border-radius: 8px; background: rgba(255, 25
 .crumb-sw__btn { height: 32px; margin-bottom: -2px; }
 .crumb-sw__line { height: 24px; margin-bottom: 2px; }
 @media (max-width: 767px) { .hd__logo { align-items: center; } .crumb-sw { align-self: center; } .crumb-sw__btn { margin-bottom: 0; } }
+
+/* ===== В7 v2: панель — часть раскладки, а не отдельная карточка.
+   Вертикальная линия продолжает линию под шапкой, верх совпадает с заголовком страницы. ===== */
+.has-side .app__body, .has-side.side-min .app__body { gap: 0; grid-template-columns: 248px minmax(0, 1fr); }
+.has-side.side-min .app__body { grid-template-columns: 80px minmax(0, 1fr); }
+.has-side .page { padding-left: 40px; }
+.side { top: 0; margin: 0; padding: 32px 24px 24px 0; display: flex; flex-direction: column; min-height: calc(100vh - 129px - var(--demo-h)); border-right: 1px solid var(--c-border); border-radius: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.side__label { padding: 0 12px 12px; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--c-tertiary); white-space: nowrap; }
+.side .tree { gap: 4px; }
+.side .tree__s { height: 44px; }
+.side .tree__s:hover { background: var(--c-overlay); box-shadow: var(--glass-1); }
+.side .tree__s.is-current { background: #fff; box-shadow: 0 2px 8px rgba(40, 40, 63, 0.08); }
+.side .tree__subs { margin: 2px 0 8px 23px; padding-left: 0; border-left: 1px solid var(--c-border); }
+.side .tree__sub { height: 36px; margin-left: 12px; padding: 0 12px; }
+.side .tree__sub.is-current { background: var(--c-accent-soft); }
+.side .tree__sub.is-current::before { left: -13.5px; }
+.side .tree__min { margin-top: auto; padding-top: 16px; height: auto; border-top: 0; }
+.side-min .side { padding-right: 16px; }
+.side-min .side__label span, .side-min .side__label { font-size: 0; padding: 0 0 12px; }
+.side-min .side__label::before { content: ""; display: block; width: 24px; height: 2px; margin: 7px auto; border-radius: 2px; background: var(--c-border); }
+@media (max-width: 1279px) {
+  .has-side .app__body, .has-side.side-min .app__body { grid-template-columns: 80px minmax(0, 1fr); }
+  .has-side .side { padding-right: 16px; }
+  .has-side .side__label { font-size: 0; padding: 0 0 12px; }
+  .has-side .side__label::before { content: ""; display: block; width: 24px; height: 2px; margin: 7px auto; border-radius: 2px; background: var(--c-border); }
+  .has-side .page { padding-left: 32px; }
+}
+@media (max-width: 767px) {
+  .has-side .page { padding-left: 0; }
+  .drawer .side__label { display: none; }
+}
+/* календарь рядом с боковой панелью — компактнее, чтобы влезали все 31 день */
+.has-side:not(.side-min) .cal__wd span, .has-side:not(.side-min) .cal__d, .has-side:not(.side-min) .cal__d b { width: 26px; font-size: 14px; }
+.has-side:not(.side-min) .cal__d b { height: 26px; line-height: 26px; border-radius: 13px; }
+.has-side:not(.side-min) .cal__wd { padding: 0 56px; }
+.has-side:not(.side-min) .cal__d i { max-width: 22px; }
+@media (max-width: 1279px) { .has-side .cal__wd span, .has-side .cal__d, .has-side .cal__d b { width: 24px; font-size: 13px; } .has-side .cal__d b { height: 24px; line-height: 24px; } .has-side .cal__wd { padding: 0 56px; } .has-side .cal__d i { max-width: 20px; } }

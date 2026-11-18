@@ -133,7 +133,7 @@
     $("#app").classList.toggle("side-min", on && !S.side);
     el.hidden = !on;
     if (!on) return;
-    el.innerHTML = `<nav class="tree" aria-label="Разделы">${treeHTML()}</nav>
+    el.innerHTML = `<div class="side__label">Разделы<span> · ${ROLES[S.role].t}</span></div><nav class="tree" aria-label="Разделы">${treeHTML()}</nav>
       <button class="tree__min" id="sideMin" type="button" aria-label="${S.side ? "Свернуть панель" : "Развернуть панель"}">${ic("sidebar")}<span class="tree__t">Свернуть</span></button>`;
   }
 
