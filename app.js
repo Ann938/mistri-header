@@ -244,7 +244,11 @@
   function openNav(trig, kb) {
     const asis = S.v === "asis";
     mount(trig, `pop pop--asis pop--sheet`, pages().map((k) => `<button class="pop__item${k === S.page ? " is-current" : ""}" role="menuitem" data-go="${k}" type="button" ${k === S.page && !asis ? 'aria-current="page"' : ""}>${ic(SEC[k].i)}<span>${SEC[k].t}</span>${ic("check", "ic--check")}</button>`).join(""));
-    if (mobile()) addScrim(); else placeAt(trig, pop, trig.closest(".hd__right") ? "right" : "left");
+    if (mobile()) addScrim(); else {
+      placeAt(trig, pop, trig.closest(".hd__right") ? "right" : "left");
+      // меню разделов опускаем под линию шапки, чтобы не наезжало на неё
+      if (S.v !== "asis") pop.style.top = $("#hd").getBoundingClientRect().bottom + scrollY + 8 + "px";
+    }
     if (kb) ($(".pop__item.is-current", pop) || $(".pop__item", pop)).focus();
   }
   function openMega(trig, kb) {
