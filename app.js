@@ -51,6 +51,8 @@
     "protocols/templates": ["Шаблоны", 6, [["Первичный приём терапевта", "Обновлён 01.08.2026", "Активен"], ["Повторный приём невролога", "Обновлён 12.07.2026", "Активен"]]],
   };
 
+  // короткие подписи подразделов в меню — те же, что в макетах Figma
+  const SHORT = { clinic: "Структура, кабинеты, оборудование", staff: "Список, документы, импорт", services: "Прайс-лист, источники, импорт", schedule: "Графики, настройки", growth: "Идеи, мои голоса", patients: "Список, возможные дубли", campaigns: "Компании, маршруты", protocols: "Черновики, подписанные, шаблоны" };
   const VARIANTS = [
     { id: "asis", n: "Как сейчас", d: "<b>Как сейчас (макет).</b> Разделы спрятаны в «три полоски», текущий раздел в меню отмечен только серой плашкой, в шапке не видно, где вы." },
     { id: "btn", n: "Кнопка-раздел", d: "<b>1. Кнопка-раздел.</b> На месте «трёх полосок» — та же стеклянная кнопка, но с иконкой и названием текущего раздела и шевроном. В меню текущий раздел — акцент и галочка." },
@@ -237,7 +239,7 @@
   function openNav(trig, kb) {
     const asis = S.v === "asis";
     mount(trig, `pop ${asis ? "pop--asis" : "pop--nav"} pop--sheet`, (asis ? "" : `<div class="pop__label">Разделы · ${ROLES[S.role].t}</div>`)
-      + pages().map((k) => `<button class="pop__item${k === S.page ? " is-current" : ""}" role="menuitem" data-go="${k}" type="button" ${k === S.page && !asis ? 'aria-current="page"' : ""}>${ic(SEC[k].i)}<span>${SEC[k].t}</span>${ic("check", "ic--check")}</button>`).join(""));
+      + pages().map((k) => `<button class="pop__item${k === S.page ? " is-current" : ""}" role="menuitem" data-go="${k}" type="button" ${k === S.page && !asis ? 'aria-current="page"' : ""}>${ic(SEC[k].i)}<span class="pop__txt">${SEC[k].t}${!asis && subs(k).length ? `<span class="pop__subs">${SHORT[k] || subs(k).map((x) => x[1].toLowerCase()).join(", ")}</span>` : ""}</span>${ic("check", "ic--check")}</button>`).join(""));
     if (mobile()) addScrim(); else placeAt(trig, pop, trig.closest(".hd__right") ? "right" : "left");
     if (kb) ($(".pop__item.is-current", pop) || $(".pop__item", pop)).focus();
   }
