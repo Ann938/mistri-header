@@ -495,3 +495,9 @@ kbd { flex: none; padding: 4px 8px; border-radius: 8px; background: rgba(255, 25
 @media (max-width: 1719px) { .demo__title { display: none; } }
 .demo__seg { position: relative; }
 @media (max-width: 1719px) and (min-width: 768px) { .demo__seg { gap: 2px; } .demo__seg button { padding: 0 9px; } .demo__btn { padding: 0 10px; } .demo__row { gap: 10px; } }
+/* В2: переключатель выравнен по слову «МИСТРИ» в логотипе, а не по центру всего знака */
+.hd__logo { align-items: flex-end; }
+.crumb-sw { align-self: flex-end; margin-bottom: 0; }
+.crumb-sw__btn { height: 32px; margin-bottom: -2px; }
+.crumb-sw__line { height: 24px; margin-bottom: 2px; }
+@media (max-width: 767px) { .hd__logo { align-items: center; } .crumb-sw { align-self: center; } .crumb-sw__btn { margin-bottom: 0; } }
