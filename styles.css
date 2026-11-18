@@ -568,3 +568,7 @@ body { min-width: 1280px; }
 /* подсказка первого входа — Tooltip */
 .coach--tip { width: auto; padding: 8px 16px; border-radius: 12px; font-size: 14px; line-height: 20px; white-space: nowrap; cursor: pointer; }
 .coach--tip .coach__arr { top: -5px; width: 10px; height: 10px; }
+/* В2: переключатель по центру шапки (по вертикали с логотипом и правым блоком) */
+.hd__logo { align-items: center; }
+.crumb-sw { align-self: center; align-items: center; }
+.crumb-sw__line { margin-bottom: 0; }
