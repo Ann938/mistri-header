@@ -584,3 +584,5 @@ body { min-width: 1280px; }
 .crumb-sw__btn .ic:first-child { color: var(--c-accent); }
 .crumb-sw__btn .i-chev { color: var(--c-secondary); }
 .crumb-sw__btn > span:not(.ic) { margin-right: 6px; }
+/* В2: переключатель по центру строки со словом «МИСТРИ» (у логотипа знак во всю высоту, а слово — в нижней половине: 24–48 px) */
+.crumb-sw { transform: translateY(12px); }
