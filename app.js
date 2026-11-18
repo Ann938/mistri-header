@@ -25,7 +25,7 @@
     protocols: { t: "Протоколы", i: "file", d: "Протоколы амбулаторного приёма", subs: [["drafts", "Черновики"], ["signed", "Подписанные"], ["templates", "Шаблоны"]] },
   };
   const ROLES = {
-    head: { t: "Руководитель", d: "Обзор, клиника, услуги", i: "shield", pages: ["overview", "clinic", "staff", "services", "schedule", "spec", "growth"] },
+    head: { t: "Руководитель", d: "Обзор, клиника, услуги", i: "shield", pages: ["overview", "clinic", "spec", "growth"] },
     reg: { t: "Регистратор", d: "Запись на приём, пациенты", i: "registrar", pages: ["booking", "patients", "campaigns", "growth"] },
     doc: { t: "Врач", d: "Приём и протоколы", i: "doctor", pages: ["workplace", "patients", "protocols", "growth"] },
   };
@@ -160,7 +160,7 @@
     <div>${rows.map(([a, b, s, c]) => `<button class="list__row" data-ent="${esc(a)}" type="button"><span class="list__main"><b>${a}</b><span>${b}</span></span><span class="st ${c || ""}">${s}</span>${ic("right", "list__go")}</button>`).join("")}</div></section>`;
   const empty = (t) => `<section class="card"><div class="card__b empty">${ic(cur().i)}<b>${t}</b><span>Здесь появятся данные подраздела «${subT() || cur().t}».</span></div></section>`;
   // обзор руководителя — ярлыки разделов: дашборд ведёт туда же, куда и навигация
-  const shortcuts = () => `<div class="grid grid--4">${pages().filter((k) => k !== S.page).slice(0, 4).map((k) => `<button class="card stat stat--go" data-go="${k}" type="button">${ic(SEC[k].i)}<span>${SEC[k].t}</span><b>${{ clinic: "5", staff: "20", services: "8", schedule: "75", spec: "12", growth: "48", patients: "36", campaigns: "4", protocols: "3", booking: "14" }[k] || "—"}</b><em>${{ staff: "4 требуют внимания", services: "1 без цены ДМС", clinic: "1 требует настройки", schedule: "2 исключения" }[k] || "открыть раздел"}</em></button>`).join("")}</div>`;
+  const shortcuts = () => `<div class="grid grid--4">${pages().filter((k) => k !== S.page).slice(0, 4).map((k) => `<button class="card stat stat--go" data-go="${k}" type="button">${ic(SEC[k].i)}<span>${SEC[k].t}</span><b>${{ clinic: "5", staff: "20", services: "8", schedule: "75", spec: "12", growth: "48", patients: "36", campaigns: "4", protocols: "3", booking: "14" }[k] || "—"}</b><em>${{ clinic: "1 требует настройки", spec: "1 без врачей", growth: "6 новых за неделю" }[k] || "открыть раздел"}</em></button>`).join("")}</div>`;
 
   function content() {
     const k = `${S.page}/${S.sub || ""}`;
@@ -238,8 +238,7 @@
   }
   function openNav(trig, kb) {
     const asis = S.v === "asis";
-    mount(trig, `pop ${asis ? "pop--asis" : "pop--nav"} pop--sheet`, (asis ? "" : `<div class="pop__label">Разделы · ${ROLES[S.role].t}</div>`)
-      + pages().map((k) => `<button class="pop__item${k === S.page ? " is-current" : ""}" role="menuitem" data-go="${k}" type="button" ${k === S.page && !asis ? 'aria-current="page"' : ""}>${ic(SEC[k].i)}<span class="pop__txt">${SEC[k].t}${!asis && subs(k).length ? `<span class="pop__subs">${SHORT[k] || subs(k).map((x) => x[1].toLowerCase()).join(", ")}</span>` : ""}</span>${ic("check", "ic--check")}</button>`).join(""));
+    mount(trig, `pop ${asis ? "pop--asis" : "pop--nav"} pop--sheet`, pages().map((k) => `<button class="pop__item${k === S.page ? " is-current" : ""}" role="menuitem" data-go="${k}" type="button" ${k === S.page && !asis ? 'aria-current="page"' : ""}>${ic(SEC[k].i)}<span>${SEC[k].t}</span>${ic("check", "ic--check")}</button>`).join(""));
     if (mobile()) addScrim(); else placeAt(trig, pop, trig.closest(".hd__right") ? "right" : "left");
     if (kb) ($(".pop__item.is-current", pop) || $(".pop__item", pop)).focus();
   }
@@ -387,9 +386,9 @@
     const box = $("#test"), body = $("#testBody");
     let run = null, tick = null, clicks = 0;
     const TASKS = [
-      { q: "Скажите вслух: в каком разделе и подразделе вы сейчас?", manual: true, prep: () => { S.role = "head"; S.page = "clinic"; S.sub = "rooms"; S.ent = null; } },
-      { q: "Откройте «Источники финансирования» в услугах.", done: () => S.page === "services" && S.sub === "sources", prep: () => { S.role = "head"; S.page = "overview"; S.sub = null; S.ent = null; } },
-      { q: "Откройте карточку «ДМС», а потом вернитесь к списку источников.", done: () => S.page === "services" && S.sub === "sources" && !S.ent && run.sawEnt, watch: () => { if (S.ent === "ДМС") run.sawEnt = true; } },
+      { q: "Скажите вслух: в каком разделе и подразделе вы сейчас?", manual: true, prep: () => { S.role = "head"; S.page = "growth"; S.sub = "mine"; S.ent = null; } },
+      { q: "Откройте «Кабинеты» в клинике.", done: () => S.page === "clinic" && S.sub === "rooms", prep: () => { S.role = "head"; S.page = "overview"; S.sub = null; S.ent = null; } },
+      { q: "Откройте карточку «Кабинет 101», а потом вернитесь к списку кабинетов.", done: () => S.page === "clinic" && S.sub === "rooms" && !S.ent && run.sawEnt, watch: () => { if (S.ent === "Кабинет 101") run.sawEnt = true; } },
       { q: "Вернитесь на «Обзор».", done: () => S.page === "overview" },
       { q: "Вы регистратор. Откройте «Возможные дубли» пациентов.", done: () => S.role === "reg" && S.page === "patients" && S.sub === "dupes" },
     ];
