@@ -257,8 +257,6 @@ input { font: inherit; color: inherit; }
   :root { --pad-x: 40px; }
   .user__txt { display: none; }
   .tabs__b { padding: 0 12px; }
-  .tabs__b .tabs__t { display: none; }
-  .tabs__b.is-current .tabs__t { display: inline; }
 }
 @media (max-width: 767px) {
   :root { --pad-x: 16px; }
@@ -341,3 +339,10 @@ body { padding-bottom: var(--demo-h); }
   .demo__btn#firstRun { display: none; }
   .pop.pop--sheet { bottom: calc(var(--demo-h) + 8px); }
 }
+
+/* В3: вкладки отдельной строкой под логотипом — помещаются целиком на любой ширине */
+.hd--tabs { flex-wrap: wrap; row-gap: 20px; }
+.hd--tabs .hd__mid { order: 3; flex-basis: 100%; justify-content: flex-start; }
+.hd--tabs .tabs { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.hd--tabs .tabs::-webkit-scrollbar { display: none; }
+@media (max-width: 767px) { .hd--tabs { row-gap: 12px; } .hd--tabs .tabs { max-width: none; } }
