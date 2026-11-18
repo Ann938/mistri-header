@@ -586,3 +586,7 @@ body { min-width: 1280px; }
 .crumb-sw__btn > span:not(.ic) { margin-right: 6px; }
 /* В2: переключатель по центру строки со словом «МИСТРИ» (у логотипа знак во всю высоту, а слово — в нижней половине: 24–48 px) */
 .crumb-sw { transform: translateY(12px); }
+/* В2: шеврон сразу за текстом, все элементы шапки — строго по центру по вертикали */
+.crumb-sw { transform: none; align-self: center; }
+.crumb-sw__btn > span:not(.ic) { width: auto !important; margin-right: 0; }
+.hd__logo, .hd__right { align-items: center; align-self: center; }

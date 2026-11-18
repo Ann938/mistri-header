@@ -108,7 +108,7 @@
   }
   // ширина переключателя — по самому длинному названию раздела роли, чтобы шапка не прыгала
   function fixNavWidth() {
-    const label = $(".navbtn--d > span:not(.ic), .crumb-sw__btn > span:not(.ic)");
+    const label = $(".navbtn--d > span:not(.ic)");
     if (!label) return;
     const cur = label.textContent;
     label.style.width = "auto";
