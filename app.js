@@ -247,7 +247,7 @@
     if (mobile()) addScrim(); else {
       placeAt(trig, pop, trig.closest(".hd__right") ? "right" : "left");
       // меню разделов опускаем под линию шапки, чтобы не наезжало на неё
-      if (S.v !== "asis") pop.style.top = $("#hd").getBoundingClientRect().bottom + scrollY + 8 + "px";
+      if (S.v === "logo") pop.style.top = $("#hd").getBoundingClientRect().bottom + scrollY + 8 + "px";
     }
     if (kb) ($(".pop__item.is-current", pop) || $(".pop__item", pop)).focus();
   }
