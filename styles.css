@@ -597,3 +597,5 @@ body { min-width: 1280px; }
 /* В1: фон кнопки-раздела как у круглых кнопок рядом (белый 48 %% + стеклянные блики) */
 .navbtn--d { background: var(--c-overlay); box-shadow: var(--glass-1); }
 .navbtn--d:hover, .navbtn--d[aria-expanded="true"] { background: rgba(255, 255, 255, 0.8); }
+/* В2: переключатель справа, первым в ряду — без сдвига под логотип */
+.crumb-sw--right { transform: none !important; }
