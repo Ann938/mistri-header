@@ -54,19 +54,12 @@
   // короткие подписи подразделов в меню — те же, что в макетах Figma
   const SHORT = { clinic: "Структура, кабинеты, оборудование", staff: "Список, документы, импорт", services: "Прайс-лист, источники, импорт", schedule: "Графики, настройки", growth: "Идеи, мои голоса", patients: "Список, возможные дубли", campaigns: "Компании, маршруты", protocols: "Черновики, подписанные, шаблоны" };
   const VARIANTS = [
-    { id: "asis", n: "Как сейчас", d: "<b>Как сейчас (макет).</b> Разделы спрятаны в «три полоски», текущий раздел в меню отмечен только серой плашкой, в шапке не видно, где вы." },
-    { id: "btn", n: "Кнопка-раздел", d: "<b>1. Кнопка-раздел.</b> На месте «трёх полосок» — та же стеклянная кнопка, но с иконкой и названием текущего раздела и шевроном. В меню текущий раздел — акцент и галочка." },
-    { id: "logo", n: "У логотипа", d: "<b>2. Раздел у логотипа.</b> Справа от логотипа через разделитель — текущий раздел с шевроном (как переключатель проектов). «Три полоски» убраны." },
-    { id: "tabs", n: "Вкладки", d: "<b>3. Вкладки в шапке.</b> Все разделы видны сразу отдельной строкой под логотипом, текущий — белый с акцентом. На телефоне — лента с прокруткой." },
-    { id: "title", n: "Заголовок", d: "<b>4. Заголовок — переключатель.</b> Шапка не меняется. Заголовок страницы с шевроном, как «Сентябрь 2026 ⌄» в календаре." },
-    { id: "crumbs", n: "Крошки", d: "<b>5. Крошки над заголовком.</b> Шапка не меняется. Над заголовком строка «Раздел ⌄ › Подраздел» из Breadcrumbs, по нажатию — выбор раздела." },
-    { id: "sys", n: "★ Система", d: "<b>6. ★ Система — рекомендую.</b> Три уровня, одинаково на всех страницах: разделы — вкладками в шапке, подразделы — вкладками под заголовком, карточка — крошками и стрелкой назад. Плюс быстрый переход по поиску (Ctrl+K)." },
-    { id: "side", n: "Боковая панель", d: "<b>7. Боковая панель.</b> Как в Stripe/Linear: слева дерево разделов, у текущего раскрыты подразделы. Панель сворачивается в узкую полосу иконок (кнопка «⇤» уже есть в макете регистратора). На телефоне — выезжает по «трём полоскам»." },
-    { id: "mega", n: "Мега-меню", d: "<b>8. Мега-меню.</b> Кнопка-раздел открывает карту всех разделов с подразделами и поиском. Видно всю структуру и где вы в ней — удобно новичкам и руководителю с 7 разделами." },
-    { id: "cmdk", n: "Поиск ⌘K", d: "<b>9. Поиск-навигатор.</b> В центре шапки — строка «Клиника › Кабинеты»: она и показывает, где вы, и открывает быстрый переход к любому разделу, подразделу или пациенту (Ctrl+K). Для регистратуры, которая работает с клавиатуры." },
+    { id: "asis", n: "Как сейчас", d: "<b>Как сейчас (макет).</b> Разделы спрятаны в «три полоски», в шапке не видно, на какой вы странице." },
+    { id: "btn", n: "Вариант 1 · Кнопка-раздел", d: "<b>Вариант 1 · Кнопка-раздел.</b> На месте «трёх полосок» — кнопка Secondary L с иконкой и названием текущего раздела и шевроном. Нажатие открывает то же меню разделов." },
+    { id: "logo", n: "Вариант 2 · У логотипа", d: "<b>Вариант 2 · Раздел у логотипа.</b> Справа от логотипа через разделитель — кнопка Secondary M с текущим разделом. «Три полоски» убраны." },
   ];
 
-  const S = { v: "sys", role: "head", page: "overview", sub: null, ent: null, side: true };
+  const S = { v: "btn", role: "head", page: "overview", sub: null, ent: null, side: true };
   const pages = () => ROLES[S.role].pages;
   const cur = () => SEC[S.page];
   const subs = (k = S.page) => SEC[k].subs || [];
@@ -99,7 +92,7 @@
     let logoExtra = "", mid = "", right = userHTML();
     if (v === "logo") logoExtra = `<div class="crumb-sw"><span class="crumb-sw__line"></span><button class="crumb-sw__btn" data-nav="nav" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="${lbl()}">${ic(cur().i)}<span>${cur().t}</span>${ic("chev")}</button></div>`;
     if (v === "tabs" || v === "sys") mid = tabsHTML();
-    if (v === "btn") { mid = navBtn("navbtn--m"); right += navBtn("navbtn--d"); }
+    if (v === "btn") right += navBtn("navbtn--d");
     if (v === "mega") { mid = navBtn("navbtn--m", "mega"); right += navBtn("navbtn--d", "mega"); }
     if (v === "cmdk") mid = `<button class="kpill" data-nav="cmdk" type="button" aria-haspopup="dialog" aria-label="Вы здесь: ${loc().join(", ")}. Быстрый переход">${ic("search")}<span class="kpill__loc">${loc().map((x, i) => `<span class="${i === loc().length - 1 ? "is-last" : ""}">${esc(x)}</span>`).join('<span class="kpill__sep">›</span>')}</span><kbd>Ctrl K</kbd></button>`;
     if (["asis", "title", "crumbs"].includes(v)) right += menuBtn();
@@ -164,7 +157,7 @@
 
   function content() {
     const k = `${S.page}/${S.sub || ""}`;
-    if (["overview", "workplace", "booking"].includes(S.page)) return (S.page === "overview" ? shortcuts() : "") + search("Поиск по ФИО, телефону, полису или СНИЛС") + calendar();
+    if (["overview", "workplace", "booking"].includes(S.page)) return search("Поиск по ФИО, телефону, полису или СНИЛС") + calendar();
     if (ROWS[k]) return (k.startsWith("patients/list") || k.startsWith("services/price") ? search("Поиск по названию, коду или ФИО") : "") + list(ROWS[k]);
     if (S.sub === "import") return `<section class="card"><div class="card__b drop">${ic("file")}<b>Перетащите файл .xlsx или .csv</b><span>или выберите на компьютере · до 10 МБ</span></div></section>`;
     return empty(subT() || cur().t);
@@ -184,7 +177,7 @@
     if (v === "crumbs") bc = `<nav class="bc" aria-label="Вы здесь"><span>${ROLES[S.role].t}</span><span class="bc__sep">›</span><button class="bc__sw" data-nav="nav" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="${lbl()}">${ic(p.i, "ic--sm")}<span>${p.t}</span>${ic("chev", "ic--sm")}</button>${S.sub ? `<span class="bc__sep">›</span>${deep ? `<a href="#" class="bc__a" data-go="${S.page}" data-sub="${S.sub}">${subT()}</a>` : `<span class="bc__cur">${subT()}</span>`}` : ""}${deep ? `<span class="bc__sep">›</span><span class="bc__cur">${esc(S.ent)}</span>` : ""}</nav>`;
     else if (deep) bc = `<nav class="bc" aria-label="Вы здесь"><a href="#" class="bc__a" data-go="${S.page}">${ic(p.i, "ic--sm")}${p.t}</a>${S.sub ? `<span class="bc__sep">›</span>${deep ? `<a href="#" class="bc__a" data-go="${S.page}" data-sub="${S.sub}">${subT()}</a>` : `<span class="bc__cur">${subT()}</span>`}` : ""}${deep ? `<span class="bc__sep">›</span><span class="bc__cur">${esc(S.ent)}</span>` : ""}</nav>`;
     // подразделы — вкладки страницы (как «Список пациентов / Возможные дубли» в макете); в боковой панели они в дереве
-    const st = !deep && subs().length && v !== "side" ? `<nav class="stabs" aria-label="Подразделы «${p.t}»">${subs().map(([sk, t]) => `<button class="stabs__b${sk === S.sub ? " is-current" : ""}" data-go="${S.page}" data-sub="${sk}" type="button" ${sk === S.sub ? 'aria-current="page"' : ""}>${t}</button>`).join("")}</nav>` : "";
+    const st = false ? `<nav class="stabs" aria-label="Подразделы «${p.t}»">${subs().map(([sk, t]) => `<button class="stabs__b${sk === S.sub ? " is-current" : ""}" data-go="${S.page}" data-sub="${sk}" type="button" ${sk === S.sub ? 'aria-current="page"' : ""}>${t}</button>`).join("")}</nav>` : "";
     const el = $("#page");
     el.innerHTML = `<div class="ttl">${bc}${h1}<p>${deep ? `${p.t}${subT() ? " · " + subT() : ""}` : p.d}</p>${st}</div>${deep ? entity() : content()}`;
     if (anim) { el.classList.remove("is-enter"); void el.offsetWidth; el.classList.add("is-enter"); }
@@ -238,7 +231,7 @@
   }
   function openNav(trig, kb) {
     const asis = S.v === "asis";
-    mount(trig, `pop ${asis ? "pop--asis" : "pop--nav"} pop--sheet`, pages().map((k) => `<button class="pop__item${k === S.page ? " is-current" : ""}" role="menuitem" data-go="${k}" type="button" ${k === S.page && !asis ? 'aria-current="page"' : ""}>${ic(SEC[k].i)}<span>${SEC[k].t}</span>${ic("check", "ic--check")}</button>`).join(""));
+    mount(trig, `pop pop--asis pop--sheet`, pages().map((k) => `<button class="pop__item${k === S.page ? " is-current" : ""}" role="menuitem" data-go="${k}" type="button" ${k === S.page && !asis ? 'aria-current="page"' : ""}>${ic(SEC[k].i)}<span>${SEC[k].t}</span>${ic("check", "ic--check")}</button>`).join(""));
     if (mobile()) addScrim(); else placeAt(trig, pop, trig.closest(".hd__right") ? "right" : "left");
     if (kb) ($(".pop__item.is-current", pop) || $(".pop__item", pop)).focus();
   }
@@ -365,7 +358,7 @@
     ring = document.createElement("div"); ring.className = "coach-ring";
     Object.assign(ring.style, { left: r.left + scrollX - 4 + "px", top: r.top + scrollY - 4 + "px", width: r.width + 8 + "px", height: r.height + 8 + "px", borderRadius: getComputedStyle(target).borderRadius });
     coach = document.createElement("div"); coach.className = "coach"; coach.setAttribute("role", "dialog");
-    coach.innerHTML = `<span class="coach__arr"></span><b>Вы в разделе «${cur().t}»</b>Здесь можно перейти в другие разделы: ${others}.<br><button class="coach__ok" type="button">Понятно</button>`;
+    coach.innerHTML = `<span class="coach__arr"></span>Здесь переключаются разделы`; coach.classList.add("coach--tip"); ring.style.display = "none";
     document.body.append(ring, coach);
     const w = coach.offsetWidth, side = S.v === "side" && !mobile();
     const left = side ? r.right + scrollX + 14 : Math.max(16, Math.min(r.left + scrollX + r.width / 2 - w / 2, innerWidth - w - 16));
@@ -373,7 +366,7 @@
     const arr = $(".coach__arr", coach);
     if (side) Object.assign(arr.style, { left: "-6px", top: "20px" });
     else arr.style.left = Math.max(16, Math.min(r.left + r.width / 2 - left - 6, w - 28)) + "px";
-    $(".coach__ok", coach).onclick = hideCoach;
+    coach.onclick = hideCoach;
   }
   $("#firstRun").onclick = showCoach;
 
@@ -386,11 +379,10 @@
     const box = $("#test"), body = $("#testBody");
     let run = null, tick = null, clicks = 0;
     const TASKS = [
-      { q: "Скажите вслух: в каком разделе и подразделе вы сейчас?", manual: true, prep: () => { S.role = "head"; S.page = "growth"; S.sub = "mine"; S.ent = null; } },
-      { q: "Откройте «Кабинеты» в клинике.", done: () => S.page === "clinic" && S.sub === "rooms", prep: () => { S.role = "head"; S.page = "overview"; S.sub = null; S.ent = null; } },
-      { q: "Откройте карточку «Кабинет 101», а потом вернитесь к списку кабинетов.", done: () => S.page === "clinic" && S.sub === "rooms" && !S.ent && run.sawEnt, watch: () => { if (S.ent === "Кабинет 101") run.sawEnt = true; } },
+      { q: "Скажите вслух: на какой странице вы сейчас?", manual: true, prep: () => { S.role = "head"; S.page = "clinic"; S.sub = firstSub("clinic"); S.ent = null; } },
+      { q: "Перейдите на страницу «Специальности».", done: () => S.page === "spec", prep: () => { S.role = "head"; S.page = "overview"; S.sub = null; S.ent = null; } },
       { q: "Вернитесь на «Обзор».", done: () => S.page === "overview" },
-      { q: "Вы регистратор. Откройте «Возможные дубли» пациентов.", done: () => S.role === "reg" && S.page === "patients" && S.sub === "dupes" },
+      { q: "Перейдите в «Развитие продукта».", done: () => S.page === "growth" },
     ];
     document.addEventListener("click", (e) => { if (run && !e.target.closest("#test, .demo")) clicks++; }, true);
     function start() { run = { v: S.v, step: 0, res: [] }; step(); }
@@ -455,7 +447,7 @@
   function toast(s) { const t = $("#toast"); t.textContent = s; t.classList.add("is-on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("is-on"), 2200); }
 
   /* ---------- панель вариантов ---------- */
-  $("#variants").innerHTML = VARIANTS.map((v, i) => `<button type="button" data-v="${v.id}"${v.id === "sys" ? ' class="is-star"' : ""}>${i ? `<small>${i}</small>` : ""}${v.n}</button>`).join("");
+  $("#variants").innerHTML = VARIANTS.map((v, i) => `<button type="button" data-v="${v.id}"${v.id === "sys" ? ' class="is-star"' : ""}>${v.n}</button>`).join("");
   $$("#variants button").forEach((b) => (b.onclick = () => { S.v = b.dataset.v; hideCoach(); render(false); test.redraw(); }));
 
   addEventListener("hashchange", () => {

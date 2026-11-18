@@ -545,3 +545,26 @@ kbd { flex: none; padding: 4px 8px; border-radius: 8px; background: rgba(255, 25
 .pop__subs { font-size: 13px; line-height: 18px; color: var(--c-tertiary); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; }
 .pop--nav .pop__item { padding-top: 8px; padding-bottom: 8px; min-height: 48px; }
 @media (max-width: 767px) { .pop--nav { width: auto; } .pop__subs { max-width: none; } }
+
+/* ===== Финал: только «как сейчас», В1 и В2, только десктоп ===== */
+body { min-width: 1280px; }
+/* В1 — кнопка Secondary L из ДС */
+.navbtn { height: 48px; gap: 12px; padding: 0 16px; border-radius: 16px; background: #fff; font-weight: 400; }
+.navbtn:hover { background: #F7F6FF; }
+.navbtn[aria-expanded="true"] { background: var(--c-base); }
+.navbtn .ic:first-child, .navbtn .i-chev { color: var(--c-primary); width: 24px; height: 24px; }
+.navbtn--m { display: none !important; }
+.navbtn--d { display: flex !important; }
+/* В2 — кнопка Secondary M из ДС рядом с логотипом */
+.hd__logo { gap: 16px; }
+.crumb-sw { gap: 16px; }
+.crumb-sw__line { height: 24px; margin-bottom: 8px; }
+.crumb-sw__btn { height: 40px; margin: 0; padding: 0 12px; gap: 8px; border-radius: 16px; background: #fff; box-shadow: var(--glass-1); font-size: 16px; line-height: 24px; font-weight: 400; }
+.crumb-sw__btn:hover { background: #F7F6FF; }
+.crumb-sw__btn[aria-expanded="true"] { background: var(--c-base); }
+.crumb-sw__btn .ic:first-child, .crumb-sw__btn .i-chev { display: inline-block; color: var(--c-primary); }
+/* меню как у Маши: 240, текущий — серая плашка */
+.pop--asis { min-width: 240px; }
+/* подсказка первого входа — Tooltip */
+.coach--tip { width: auto; padding: 8px 16px; border-radius: 12px; font-size: 14px; line-height: 20px; white-space: nowrap; cursor: pointer; }
+.coach--tip .coach__arr { top: -5px; width: 10px; height: 10px; }
