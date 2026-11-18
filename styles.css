@@ -594,3 +594,6 @@ body { min-width: 1280px; }
 .crumb-sw { transform: translateY(16px); }
 /* В2: на 8 px выше линии слова «МИСТРИ» */
 .crumb-sw { transform: translateY(8px); }
+/* В1: фон кнопки-раздела как у круглых кнопок рядом (белый 48 %% + стеклянные блики) */
+.navbtn--d { background: var(--c-overlay); box-shadow: var(--glass-1); }
+.navbtn--d:hover, .navbtn--d[aria-expanded="true"] { background: rgba(255, 255, 255, 0.8); }
