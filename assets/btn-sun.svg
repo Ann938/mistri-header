@@ -1,0 +1,28 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ButtonIcon" filter="url(#filter0_ii_0_549)">
+<rect width="48" height="48" rx="24" fill="white" fill-opacity="0.48"/>
+<g id="sun">
+<path id="Icon (Stroke)" d="M23.25 34V32C23.25 31.5858 23.5858 31.25 24 31.25C24.4142 31.25 24.75 31.5858 24.75 32V34C24.75 34.4142 24.4142 34.75 24 34.75C23.5858 34.75 23.25 34.4142 23.25 34ZM17.7842 29.1602C18.0771 28.8673 18.5518 28.8673 18.8447 29.1602C19.1372 29.4531 19.1375 29.9279 18.8447 30.2207L17.4307 31.6348C17.1378 31.9277 16.662 31.9277 16.3691 31.6348C16.0765 31.342 16.0767 30.8671 16.3691 30.5742L17.7842 29.1602ZM29.1553 29.1602C29.4482 28.8673 29.9229 28.8673 30.2158 29.1602L31.6309 30.5742C31.9233 30.8671 31.9235 31.342 31.6309 31.6348C31.338 31.9277 30.8622 31.9277 30.5693 31.6348L29.1553 30.2207C28.8625 29.9279 28.8628 29.4531 29.1553 29.1602ZM28.25 24C28.25 21.6528 26.3472 19.75 24 19.75C21.6528 19.75 19.75 21.6528 19.75 24C19.75 26.3472 21.6528 28.25 24 28.25C26.3472 28.25 28.25 26.3472 28.25 24ZM16 23.25C16.4142 23.25 16.75 23.5858 16.75 24C16.75 24.4142 16.4142 24.75 16 24.75H14C13.5858 24.75 13.25 24.4142 13.25 24C13.25 23.5858 13.5858 23.25 14 23.25H16ZM34 23.25C34.4142 23.25 34.75 23.5858 34.75 24C34.75 24.4142 34.4142 24.75 34 24.75H32C31.5858 24.75 31.25 24.4142 31.25 24C31.25 23.5858 31.5858 23.25 32 23.25H34ZM16.3691 16.3691C16.662 16.0762 17.1378 16.0762 17.4307 16.3691L18.8447 17.7842C19.1373 18.0771 19.1375 18.5519 18.8447 18.8447C18.5519 19.1375 18.0771 19.1373 17.7842 18.8447L16.3691 17.4307C16.0762 17.1378 16.0762 16.662 16.3691 16.3691ZM30.5693 16.3691C30.8622 16.0762 31.338 16.0762 31.6309 16.3691C31.9238 16.662 31.9238 17.1378 31.6309 17.4307L30.2158 18.8447C29.9229 19.1373 29.4481 19.1375 29.1553 18.8447C28.8625 18.5519 28.8627 18.0771 29.1553 17.7842L30.5693 16.3691ZM23.25 16V14C23.25 13.5858 23.5858 13.25 24 13.25C24.4142 13.25 24.75 13.5858 24.75 14V16C24.75 16.4142 24.4142 16.75 24 16.75C23.5858 16.75 23.25 16.4142 23.25 16ZM29.75 24C29.75 27.1756 27.1756 29.75 24 29.75C20.8244 29.75 18.25 27.1756 18.25 24C18.25 20.8244 20.8244 18.25 24 18.25C27.1756 18.25 29.75 20.8244 29.75 24Z" fill="#28283F"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_ii_0_549" x="0" y="0" width="48" height="48" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect1_innerShadow_0_549"/>
+<feOffset dx="-1" dy="-1"/>
+<feGaussianBlur stdDeviation="0.5"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_0_549"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="1" operator="dilate" in="SourceAlpha" result="effect2_innerShadow_0_549"/>
+<feOffset dx="1" dy="1"/>
+<feGaussianBlur stdDeviation="0.5"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+<feBlend mode="normal" in2="effect1_innerShadow_0_549" result="effect2_innerShadow_0_549"/>
+</filter>
+</defs>
+</svg>

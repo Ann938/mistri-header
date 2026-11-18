@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>МИСТРИ — шапка и разделы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Панель прототипа (не часть интерфейса МИСТРИ) -->
+<div class="demo" id="demo">
+  <div class="demo__in">
+    <div class="demo__row">
+      <b class="demo__title">МИСТРИ · шапка <span>прототип</span></b>
+      <div class="demo__seg" id="variants" role="tablist" aria-label="Вариант"></div>
+      <div class="demo__tools">
+        <button class="demo__btn" id="firstRun" type="button" title="Показать подсказку первого входа">Первый вход</button>
+        <button class="demo__btn demo__btn--accent" id="testBtn" type="button">Коридорный тест</button>
+      </div>
+    </div>
+    <p class="demo__desc" id="desc"></p>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <header class="hd" id="hd"></header>
+  <main class="page" id="page" tabindex="-1"></main>
+</div>
+
+<!-- Коридорный тест -->
+<aside class="test" id="test" aria-hidden="true">
+  <div class="test__card">
+    <div class="test__head">
+      <b>Коридорный тест</b>
+      <button class="test__x" id="testClose" type="button" aria-label="Закрыть">✕</button>
+    </div>
+    <div id="testBody"></div>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
