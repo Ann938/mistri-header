@@ -542,6 +542,6 @@ kbd { flex: none; padding: 4px 8px; border-radius: 8px; background: rgba(255, 25
 /* меню разделов: под названием — его подразделы (как в макете Figma) */
 .pop--nav { width: 320px; }
 .pop__txt { display: flex; flex-direction: column; min-width: 0; }
-.pop__subs { font-size: 13px; line-height: 18px; color: var(--c-tertiary); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+.pop__subs { font-size: 13px; line-height: 18px; color: var(--c-tertiary); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px; }
 .pop--nav .pop__item { padding-top: 8px; padding-bottom: 8px; min-height: 48px; }
 @media (max-width: 767px) { .pop--nav { width: auto; } .pop__subs { max-width: none; } }
