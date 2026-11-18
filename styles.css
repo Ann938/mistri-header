@@ -592,3 +592,5 @@ body { min-width: 1280px; }
 .hd__logo, .hd__right { align-items: center; align-self: center; }
 /* В2: «Обзор ⌄» и разделитель опущены на линию слова «МИСТРИ» — низ текста по низу логотипа */
 .crumb-sw { transform: translateY(16px); }
+/* В2: на 8 px выше линии слова «МИСТРИ» */
+.crumb-sw { transform: translateY(8px); }
