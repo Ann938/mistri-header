@@ -253,7 +253,8 @@
     if (mobile()) addScrim(); else {
       placeAt(trig, pop, trig.closest(".hd__right") ? "right" : "left");
       // меню разделов опускаем под линию шапки, чтобы не наезжало на неё
-      if (S.v === "logo") pop.style.top = $("#hd").getBoundingClientRect().bottom + scrollY + 8 + "px";
+      // В2: меню вплотную к переключателю — отступ 4 px, как в ДС
+      if (S.v === "logo") pop.style.top = trig.getBoundingClientRect().bottom + scrollY + 4 + "px";
     }
     if (kb) ($(".pop__item.is-current", pop) || $(".pop__item", pop)).focus();
   }
