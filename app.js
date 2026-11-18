@@ -339,6 +339,9 @@
     S.page = PAGES[p] && pages().includes(p) ? p : pages()[0];
     hideCoach(); render(false);
   });
+  // высота нижней панели — отступ странице, тесту и тосту
+  const demoH = () => document.documentElement.style.setProperty("--demo-h", $("#demo").offsetHeight + "px");
+  new ResizeObserver(demoH).observe($("#demo"));
   render(false);
   document.fonts?.ready.then(placeTabs);
 })();
